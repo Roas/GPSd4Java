@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="flightPlans">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="flightPaths" type="flightPath" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="flightPath">
+    <xs:sequence>
+      <xs:element name="airplaneCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="coordinates" type="coordinates" nillable="false" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="departureLocation" type="xs:string" minOccurs="0"/>
+      <xs:element name="destinationLocation" type="xs:string" minOccurs="0"/>
+      <xs:element name="flightCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="flyDays" type="flyDays" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="flyDays">
+    <xs:sequence>
+      <xs:element name="day" type="dayOfWeek" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="coordinates">
+    <xs:sequence>
+      <xs:element name="coordinate" type="flightCoordinate" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="flightCoordinate">
+    <xs:sequence>
+      <xs:element name="altitude" type="xs:double"/>
+      <xs:element name="latitude" type="xs:double"/>
+      <xs:element name="longitude" type="xs:double"/>
+      <xs:element name="time" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="dayOfWeek">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MONDAY"/>
+      <xs:enumeration value="TUESDAY"/>
+      <xs:enumeration value="WEDNESDAY"/>
+      <xs:enumeration value="THURSDAY"/>
+      <xs:enumeration value="FRIDAY"/>
+      <xs:enumeration value="SATURDAY"/>
+      <xs:enumeration value="SUNDAY"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

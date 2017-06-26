@@ -24,10 +24,14 @@ import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.backend.ResultParser;
 import de.taimos.gpsd4java.simulator.GPSSimulatorEndpoint;
+import de.taimos.gpsd4java.simulator.XmlReader;
+import de.taimos.gpsd4java.simulator.models.FlightPlans;
 import de.taimos.gpsd4java.types.*;
 import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 /**
  * This class provides tests during the startup phase of GPSd4Java<br>
@@ -50,7 +54,7 @@ public class TestSimulator {
 	 */
 	public static void main(final String[] args) {
 		try {
-			final GPSSimulatorEndpoint ep = new GPSSimulatorEndpoint();
+			final GPSSimulatorEndpoint ep = new GPSSimulatorEndpoint(new File("flightPlans.xsd.xml"));
 			
 			ep.addListener(new ObjectListener() {
 				

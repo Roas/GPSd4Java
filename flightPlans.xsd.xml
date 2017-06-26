@@ -1,0 +1,27 @@
+<flightPlans>
+  <!--Zero or more repetitions:-->
+  <flightPaths>
+    <!--Optional:-->
+    <airplaneCode>string</airplaneCode>
+    <coordinates>
+      <!--1 or more repetitions:-->
+      <coordinate>
+        <altitude>1.051732E7</altitude>
+        <latitude>1.051732E7</latitude>
+        <longitude>1.051732E7</longitude>
+        <time>10</time>
+      </coordinate>
+    </coordinates>
+    <!--Optional:-->
+    <departureLocation>string</departureLocation>
+    <!--Optional:-->
+    <destinationLocation>string</destinationLocation>
+    <!--Optional:-->
+    <flightCode>string</flightCode>
+    <!--Optional:-->
+    <flyDays>
+      <!--1 or more repetitions:-->
+      <day>FRIDAY</day>
+    </flyDays>
+  </flightPaths>
+</flightPlans>

@@ -12,11 +12,10 @@ import java.io.File;
  */
 public class XmlReader
 {
-    public XmlReader(File xmlFile) throws JAXBException {
+    public static FlightPlans readFile(File xmlFile) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(FlightPlans.class);
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        FlightPlans hdb = (FlightPlans) jaxbUnmarshaller.unmarshal(xmlFile);
-        System.out.println(hdb);
+        return (FlightPlans) jaxbUnmarshaller.unmarshal(xmlFile);
     }
 }

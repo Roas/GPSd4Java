@@ -5,6 +5,8 @@ import de.taimos.gpsd4java.backend.AbstractResultParser;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.backend.ResultParser;
 import de.taimos.gpsd4java.backend.SocketThread;
+import de.taimos.gpsd4java.simulator.models.FlightPath;
+import de.taimos.gpsd4java.simulator.models.FlightPlans;
 import de.taimos.gpsd4java.types.*;
 import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 import org.json.JSONException;
@@ -13,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -47,8 +50,16 @@ public class GPSSimulatorEndpoint implements IGPSdEndpoint {
 
     private AtomicLong retryInterval = new AtomicLong(1000);
 
+    protected FlightPath flightPath;
 
-    public GPSSimulatorEndpoint() {
+
+    public GPSSimulatorEndpoint(String flightCode, File flightplansXmlFile) throws Exception {
+        try {
+            FlightPlans flightPlans = XmlReader.readFile(flightplansXmlFile);
+            flightPath = flightPlans.getFlightPaths().stream().filter(x -> x.getFlightCode() == flightCode).findFirst().get();
+        } catch (JAXBException e) {
+            throw new Exception("Cannot read the xml file. The file does not exists or contains invalid XML");
+        }
     }
 
     /**

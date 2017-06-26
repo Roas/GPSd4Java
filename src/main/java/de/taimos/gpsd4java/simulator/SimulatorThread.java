@@ -62,7 +62,6 @@ public class SimulatorThread extends Thread {
 	
 	@Override
 	public void run() {
-
 		/* Test */
 		//Kew, London
 		Coordinate lat = new DegreeCoordinate(51.4843774);
