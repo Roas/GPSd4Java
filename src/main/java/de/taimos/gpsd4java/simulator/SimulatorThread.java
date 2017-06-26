@@ -80,31 +80,13 @@ public class SimulatorThread extends Thread {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				// Return a new obj
-				TPVObject testObj = new TPVObject();
-				testObj.setTimestampError(0);
-				testObj.setAltitudeError(0);
-				testObj.setClimbRateError(0);
-				testObj.setCourseError(0);
-				testObj.setLongitudeError(0);
-				testObj.setSpeedError(0);
+			TPVObject tpv = endpoint.flightPathReader.getNextTPVObject();
+			if(tpv == null) {
+				timer.cancel();
+				return;
+			}
 
-				// Set the time to now
-				double unixTime = System.currentTimeMillis() / 1000L;
-				testObj.setTimestamp(unixTime);
-
-				testObj.setMode(ENMEAMode.ThreeDimensional);
-				testObj.setTag("SIMULATED");
-				testObj.setDevice("GPS Simulator");
-
-
-				testObj.setAltitude(50);
-				testObj.setLongitude(80);
-				testObj.setSpeed(100);
-				testObj.setCourse(90);
-				testObj.setClimbRate(5);
-
-				endpoint.handle(testObj);
+			endpoint.handle(tpv);
 			}
 		}, 0, 1000);
 
