@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import de.taimos.gpsd4java.simulator.IGPSdEndpoint;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -53,15 +54,15 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  *
  * @author thoeger
  */
-public class GPSdEndpoint {
+public class GPSdEndpoint implements IGPSdEndpoint {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GPSdEndpoint.class);
 	
 	private Socket socket;
 	
-	private BufferedReader in;
-	
-	private BufferedWriter out;
+	protected BufferedReader in;
+
+	protected BufferedWriter out;
 	
 	private SocketThread listenThread;
 	
@@ -114,6 +115,7 @@ public class GPSdEndpoint {
 	/**
 	 * start the endpoint
 	 */
+	@Override
 	public void start() {
 		this.listenThread = new SocketThread(this.in, this, this.resultParser);
 		this.listenThread.start();
@@ -128,6 +130,7 @@ public class GPSdEndpoint {
 	/**
 	 * Stops the endpoint.
 	 */
+	@Override
 	public void stop() {
 		
 		try {
@@ -197,6 +200,7 @@ public class GPSdEndpoint {
 	 * @return {@link VersionObject}
 	 * @throws IOException on IO error in socket
 	 */
+	@Override
 	public VersionObject version() throws IOException {
 		return this.syncCommand("?VERSION;", VersionObject.class);
 	}
@@ -207,6 +211,7 @@ public class GPSdEndpoint {
 	/**
 	 * @param listener the listener to add
 	 */
+	@Override
 	public void addListener(final IObjectListener listener) {
 		this.listeners.add(listener);
 	}
@@ -214,6 +219,7 @@ public class GPSdEndpoint {
 	/**
 	 * @param listener the listener to remove
 	 */
+	@Override
 	public void removeListener(final IObjectListener listener) {
 		this.listeners.remove(listener);
 	}

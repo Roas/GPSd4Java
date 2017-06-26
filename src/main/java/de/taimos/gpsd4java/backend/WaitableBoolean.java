@@ -5,24 +5,24 @@ package de.taimos.gpsd4java.backend;
  *
  * @author TimW
  */
-class WaitableBoolean {
+public class WaitableBoolean {
 	
 	private boolean val;
 	
 	public WaitableBoolean(boolean b) {
 		this.val = b;
 	}
-	
-	synchronized void set(boolean value) {
+
+	public synchronized void set(boolean value) {
 		this.val = value;
 		notifyAll();
 	}
 	
-	synchronized boolean get() {
+	public synchronized boolean get() {
 		return this.val;
 	}
-	
-	synchronized public void waitFor(long millis) throws InterruptedException {
+
+	public synchronized void waitFor(long millis) throws InterruptedException {
 		super.wait(millis);
 	}
 }
