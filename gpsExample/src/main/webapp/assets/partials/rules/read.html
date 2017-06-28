@@ -1,0 +1,95 @@
+<header class="page-header">
+    <h1>Rule</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Rule</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label">Distance</label>
+                    <p class="form-control-static">{{rule.distance}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Parameters</label>
+                    <p class="form-control-static">{{rule.parameters}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Action</label>
+                    <p class="form-control-static"><span ng-repeat="action in rule.action">{{action.method}}<br></span></p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Group</label>
+                    <p class="form-control-static"><span ng-repeat="userGroup in rule.userGroup">{{userGroup.name}}<br></span></p>
+                </div>
+                <a href="#/rules/{{rule.id}}/edit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs">Edit</span>
+                </a>
+                <a href="#/rules/{{rule.id}}/remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="hidden-xs">Remove</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6" ng-show="beacon.id !== undefined">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Linked beacon</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <p class="form-control-static">{{beacon.name}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Remarks</label>
+                    <p class="form-control-static">{{beacon.remarks}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Latitude</label>
+                    <p class="form-control-static">{{beacon.latitude}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Longitude</label>
+                    <p class="form-control-static">{{beacon.longitude}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <p class="form-control-static">{{beacon.status}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">UUID</label>
+                    <p class="form-control-static">{{beacon.uuid}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Major</label>
+                    <p class="form-control-static">{{beacon.major}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Minor</label>
+                    <p class="form-control-static">{{beacon.minor}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <p class="form-control-static">{{beacon.type}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Capabilities</label>
+                    <p class="form-control-static">{{beacon.capabilities}}</p>
+                </div>
+                <a href="#/beacons/{{beacon.id}}/edit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs">Edit</span>
+                </a>
+                <a href="#/beacons/{{beacon.id}}/remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="hidden-xs">Remove</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

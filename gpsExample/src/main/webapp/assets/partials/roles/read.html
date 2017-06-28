@@ -1,0 +1,57 @@
+<header class="page-header">
+    <h1>Role</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Role</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <p class="form-control-static">{{role.name}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Abbreviation</label>
+                    <p class="form-control-static">{{role.abbreviation}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <p class="form-control-static">{{role.description}}</p>
+                </div>
+                <a href="#/roles/{{role.id}}/edit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs">Edit</span>
+                </a>
+                <a href="#/roles/{{role.id}}/remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="hidden-xs">Remove</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Permission(s)</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Authority</th>
+                        <th>Permission</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="permission in role.permissions | orderBy: ['authority','permission']">
+                        <td>{{permission.authority}}</td>
+                        <td>{{permission.permission}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

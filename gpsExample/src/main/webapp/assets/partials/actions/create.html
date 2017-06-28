@@ -1,0 +1,24 @@
+<header class="page-header">
+    <h1>Add Action</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Action</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="create()">
+                    <div class="form-group">
+                        <label class="control-label">Method</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="action.method" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="hidden-xs">Add Action</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

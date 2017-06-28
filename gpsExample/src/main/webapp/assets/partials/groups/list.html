@@ -1,0 +1,55 @@
+<header class="page-header">
+    <h1>Groups</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <a href="#/groups/add" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="hidden-xs">Add Group</span>
+                    </a>
+                </div>
+                <input type="search" class="form-control" ng-model="search">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Groups</h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="hidden-xs">ID</th>
+                        <th>Name</th>
+                        <th>Abbreviation</th>
+                        <th>Description</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="group in groups | filter: {'name':search}">
+                        <td class="hidden-xs">{{group.id}}</td>
+                        <td><a href="#/groups/{{group.id}}">{{group.name}}</a></td>
+                        <td>{{group.abbreviation}}</td>
+                        <td>{{group.description}}</td>
+                        <td>
+                            <a href="#/groups/{{group.id}}/edit" class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs">Edit</span>
+                            </a>
+                            <a href="#/groups/{{group.id}}/remove" class="btn btn-danger btn-xs">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="hidden-xs">Remove</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

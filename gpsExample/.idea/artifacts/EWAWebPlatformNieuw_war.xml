@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EWAWebPlatformNieuw:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="EWAWebPlatformNieuw-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="EWAWebPlatformNieuw:war exploded" />
+    </root>
+  </artifact>
+</component>

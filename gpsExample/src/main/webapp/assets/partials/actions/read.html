@@ -1,0 +1,26 @@
+<header class="page-header">
+    <h1>Action</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Action</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label">Method</label>
+                    <p class="form-control-static">{{action.method}}</p>
+                </div>
+                <a href="#/actions/{{action.id}}/edit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs">Edit</span>
+                </a>
+                <a href="#/actions/{{action.id}}/remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="hidden-xs">Remove</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

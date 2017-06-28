@@ -1,0 +1,60 @@
+<header class="page-header">
+    <h1>Edit Beacon</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Beacon</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="update()">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Remarks</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.remarks" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Latitude</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.latitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Longitude</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.longitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Status</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.status" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">UUID</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.uuid" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Major</label>
+                        <input type="number" class="form-control" autocomplete="off" ng-model="beacon.major" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Minor</label>
+                        <input type="number" class="form-control" autocomplete="off" ng-model="beacon.minor" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Type</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.type" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Capabilities</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="beacon.capabilities" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="hidden-xs">Edit Beacon</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

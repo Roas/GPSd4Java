@@ -1,0 +1,58 @@
+<header class="page-header">
+    <h1>Edit Rule</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Rule</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="update()">
+                    <div class="form-group">
+                        <label class="control-label">Beacon</label>
+                        <select class="form-control" ng-options="option.name for option in beacons track by option.id" ng-model="rule.beacon" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Distance</label>
+                        <select class="form-control" ng-model="rule.distance" required>
+                            <option value="near">Near</option>
+                            <option value="far">Far</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Parameters</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="rule.parameters">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Usergroups</label>
+                        <select size="10" class="form-control" multiple ng-multiple="true" ng-options="option.name for option in groups track by option.id" ng-model="rule.userGroup" required></select>
+                    </div>
+                    <div class="form-group">
+                        <div class="row" style="margin-left:0px; margin-right:0px; border:1px solid lightgrey">
+                            <div class="col-sm-5">
+                                <label class="control-label">Selected actions</label>
+                                <div style="min-height:200px; border:1px dashed #222222;" class="containerVertical list-group" dragular="dragularOptions">
+                                    <div ng-repeat="action in selectedActions" style="margin:5px; border:1px solid white; cursor: pointer;" class="list-group-item active">{{action.method}}</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div style="text-align:center; padding-top:50%;">Please drag actions to the left or right side</div>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="control-label">Available actions</label>
+                                <div style="min-height:200px; border:1px dashed #222222;" class="containerVertical list-group" dragular='{"containersModel":"actions","classes":{"mirror":"custom-green-mirror"},"nameSpace":"common"}'>
+                                    <div ng-repeat="action in actions" style="margin:5px; border:1px solid white; cursor: pointer;" class="list-group-item active">{{action.method}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="hidden-xs">Edit Rule</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

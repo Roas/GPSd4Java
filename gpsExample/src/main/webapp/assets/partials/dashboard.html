@@ -1,0 +1,35 @@
+<header class="page-header">
+    <h1>Dashboard</h1>
+</header>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-danger" ng-show="removeError">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Unable to remove this beacon. This beacon still has a rule attached
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label>
+                <input type="checkbox" ng-model="controls">
+                <span style="vertical-align: top;">{{ controls === true ? "Hide" : "Show" }} controls</span>
+            </label>
+            <div ng-show="controls">
+                <h4>Map</h4>
+                <p><strong>Left mouse click</strong>: Add new beacon</p>
+                <h4>Beacon</h4>
+                <p><strong>Left mouse click</strong>: Get information</p>
+                <p><strong>Right mouse click</strong>: Remove beacon</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Beacons</h3>
+            </div>
+            <div>
+                <ripple-loader></ripple-loader>
+                <beacon-map></beacon-map>
+            </div>
+        </div>
+    </div>
+</div>

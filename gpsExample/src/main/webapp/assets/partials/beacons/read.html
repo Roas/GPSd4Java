@@ -1,0 +1,81 @@
+<header class="page-header">
+    <h1>Beacon</h1>
+</header>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Beacon</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <p class="form-control-static">{{beacon.name}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Remarks</label>
+                    <p class="form-control-static">{{beacon.remarks}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Latitude</label>
+                    <p class="form-control-static">{{beacon.latitude}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Longitude</label>
+                    <p class="form-control-static">{{beacon.longitude}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <p class="form-control-static">{{beacon.status}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">UUID</label>
+                    <p class="form-control-static">{{beacon.uuid}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Major</label>
+                    <p class="form-control-static">{{beacon.major}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Minor</label>
+                    <p class="form-control-static">{{beacon.minor}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <p class="form-control-static">{{beacon.type}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Capabilities</label>
+                    <p class="form-control-static">{{beacon.capabilities}}</p>
+                </div>
+                <a href="#/beacons/{{beacon.id}}/edit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs">Edit</span>
+                </a>
+                <a href="#/beacons/{{beacon.id}}/remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="hidden-xs">Remove</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Rule(s)</h3>
+            </div>
+            <div class="panel-body" ng-repeat="rule in beacon.rules">
+                <div><b>Rule {{rule.id}}</b><br><br>
+                    <div class="form-group">
+                        <label class="control-label">Actions</label><br>
+                        <span class="form-control-static" ng-repeat="action in rule.action">{{action.method}}<br></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Groups</label><br>
+                        <span class="form-control-static" ng-repeat="userGroup in rule.userGroup">{{userGroup.name}}<br></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
