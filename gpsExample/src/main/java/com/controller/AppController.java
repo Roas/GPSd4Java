@@ -6,16 +6,22 @@
 package com.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AppController
 {
-
     @RequestMapping(value = "/")
-    public ModelAndView index()
+    public ModelAndView index(Model model)
     {
+        double latitude = 51.508742;
+        double longitude = -0.120850;
+
+        model.addAttribute("latitude", latitude);
+        model.addAttribute("longitude", longitude);
+
         // Return the index.jsp page
         return new ModelAndView("index");
     }
