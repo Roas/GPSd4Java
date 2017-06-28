@@ -52,7 +52,7 @@ public class FlightPathReader
 
     public FlightCoordinate getCoordinate(int index) {
         List<FlightCoordinate> coordinateList = flightPath.getCoordinates().getCoordinate();
-        if(coordinateList.size() <= coordinateIndex)
+        if(coordinateList.size() <= index)
             return null;
 
         return coordinateList.get(index);
@@ -68,6 +68,9 @@ public class FlightPathReader
         FlightCoordinate coordinate = getCoordinate(coordinateIndex);
         FlightCoordinate coordinate2 = getCoordinate(coordinateIndex + 1);
 
+        if(coordinate == null || coordinate2 == null)
+            return null;
+
         LocalTime t1 = getTimeFromCoordinate(coordinate);
         LocalTime t2 = getTimeFromCoordinate(coordinate2);
         int t1Sec = t1.toSecondOfDay();
@@ -75,11 +78,18 @@ public class FlightPathReader
         int differenceSec = t2Sec - t1Sec;
 
         if(timer == -1)
-            timer = t1Sec;
-
-
-        if(timer == t1Sec || timer > t2Sec)
         {
+            timer = t1Sec;
+            intervalCoordsIndex = 0;
+            final GeodeticCalculator calc = new GeodeticCalculator();
+            final Point2D startPoint = new Point2D.Double(coordinate.getLongitude(), coordinate.getLatitude());
+            final Point2D endPoint = new Point2D.Double(coordinate2.getLongitude(), coordinate2.getLatitude());
+            calc.setStartingGeographicPoint(startPoint);
+            calc.setDestinationGeographicPoint(endPoint);
+            intervalCoords = calc.getGeodeticPath(differenceSec);
+        } else if(timer >= t2Sec) {
+            coordinateIndex++;
+
             intervalCoordsIndex = 0;
             final GeodeticCalculator calc = new GeodeticCalculator();
             final Point2D startPoint = new Point2D.Double(coordinate.getLongitude(), coordinate.getLatitude());
@@ -89,10 +99,6 @@ public class FlightPathReader
             intervalCoords = calc.getGeodeticPath(differenceSec);
         }
 
-        if(timer > t2Sec) {
-            coordinateIndex++;
-        }
-
         // Return a new obj
         TPVObject testObj = new TPVObject();
         testObj.setTimestampError(0);
@@ -100,6 +106,7 @@ public class FlightPathReader
         testObj.setClimbRateError(0);
         testObj.setCourseError(0);
         testObj.setLongitudeError(0);
+        testObj.setLatitudeError(0);
         testObj.setLatitude(0);
         testObj.setSpeedError(0);
 
@@ -107,8 +114,7 @@ public class FlightPathReader
         Point2D point = intervalCoords.get(intervalCoordsIndex++);
 
         // Set the time to now
-        long time = new Date().getTime();
-        testObj.setTimestamp(time);
+        testObj.setTimestamp(timer);
         testObj.setMode(ENMEAMode.ThreeDimensional);
         testObj.setTag("SIMULATED");
         testObj.setDevice("GPS Simulator");
