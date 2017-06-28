@@ -491,38 +491,38 @@ public class TPVObject implements IGPSObject {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("TPVObject{tag=");
-		sb.append(this.tag);
+		/*sb.append("TPVObject{tag=");
+		/*sb.append(this.tag);
 		sb.append(", device=");
-		sb.append(this.device);
+		sb.append(this.device);*/
 		sb.append(", timestamp=");
 		sb.append(this.timestamp);
-		sb.append(", timestampError=");
-		sb.append(this.timestampError);
+		/*sb.append(", timestampError=");
+		sb.append(this.timestampError);*/
 		sb.append(", latitude=");
 		sb.append(this.latitude);
 		sb.append(", longitude=");
 		sb.append(this.longitude);
 		sb.append(", altitude=");
 		sb.append(this.altitude);
-		sb.append(", latitudeError=");
+		/*sb.append(", latitudeError=");
 		sb.append(this.latitudeError);
 		sb.append(", longitudeError=");
 		sb.append(this.longitudeError);
 		sb.append(", altitudeError=");
-		sb.append(this.altitudeError);
+		sb.append(this.altitudeError);*/
 		sb.append(", course=");
 		sb.append(this.course);
 		sb.append(", speed=");
 		sb.append(this.speed);
 		sb.append(", climbRate=");
 		sb.append(this.climbRate);
-		sb.append(", courseError=");
+		/*sb.append(", courseError=");
 		sb.append(this.courseError);
 		sb.append(", speedError=");
 		sb.append(this.speedError);
 		sb.append(", climbRateError=");
-		sb.append(this.climbRateError);
+		sb.append(this.climbRateError);*/
 		if (mode != null) {
 			sb.append(", mode=");
 			sb.append(this.mode.name());

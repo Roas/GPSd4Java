@@ -94,7 +94,7 @@ public class TestSimulator {
 			
 			TestSimulator.log.info("Version: {}", ep.version());
 			
-			Thread.sleep(60000);
+			Thread.sleep(Integer.MAX_VALUE);
 		} catch (final Exception e) {
 			TestSimulator.log.error("Problem encountered", e);
 		}
