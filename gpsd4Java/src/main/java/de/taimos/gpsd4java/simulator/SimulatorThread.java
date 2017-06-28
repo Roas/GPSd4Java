@@ -62,19 +62,10 @@ public class SimulatorThread extends Thread {
 	
 	@Override
 	public void run() {
-		/* Test */
-		//Kew, London
-		Coordinate lat = new DegreeCoordinate(51.4843774);
-		Coordinate lng = new DegreeCoordinate(-0.2912044);
-		Point kew = new Point(lat, lng);
 
-		//Richmond, London
-		lat = new DegreeCoordinate(51.4613418);
-		lng = new DegreeCoordinate(-0.3035466);
-		Point richmond = new Point(lat, lng);
 
-		double distance = EarthCalc.getDistance(richmond, kew); //in meters
-		LOG.debug("Distance: " + distance);
+		//double distance = EarthCalc.getDistance(richmond, kew); //in meters
+		//LOG.debug("Distance: " + distance);
 
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -88,7 +79,7 @@ public class SimulatorThread extends Thread {
 
 			endpoint.handle(tpv);
 			}
-		}, 0, 1000);
+		}, 0, 100);
 
 	/*	while (this.running.get()) {
 

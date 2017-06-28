@@ -37,7 +37,7 @@
       <xs:element name="altitude" type="xs:double"/>
       <xs:element name="latitude" type="xs:double"/>
       <xs:element name="longitude" type="xs:double"/>
-      <xs:element name="time" type="xs:long"/>
+      <xs:element name="time" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 

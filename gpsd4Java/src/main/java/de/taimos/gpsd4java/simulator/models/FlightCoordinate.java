@@ -40,7 +40,7 @@ public class FlightCoordinate {
     protected double altitude;
     protected double latitude;
     protected double longitude;
-    protected long time;
+    protected String time;
 
     /**
      * Gets the value of the altitude property.
@@ -94,7 +94,7 @@ public class FlightCoordinate {
      * Gets the value of the time property.
      * 
      */
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -102,7 +102,7 @@ public class FlightCoordinate {
      * Sets the value of the time property.
      * 
      */
-    public void setTime(long value) {
+    public void setTime(String value) {
         this.time = value;
     }
 
