@@ -6,13 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="EWAWebPlatformNieuw" />
-        <module name="gpsExample" />
+        <module name="gpsd4java" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="EWAWebPlatformNieuw" target="1.7" />
-      <module name="gpsExample" target="1.7" />
+      <module name="gpsd4java" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
