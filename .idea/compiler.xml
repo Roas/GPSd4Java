@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gpsd4java" />
+        <module name="gpsExample" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gpsd4java" target="1.8" />
+      <module name="gpsExample" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
