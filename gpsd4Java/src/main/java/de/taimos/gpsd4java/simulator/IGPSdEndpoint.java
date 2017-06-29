@@ -8,10 +8,8 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-/**
- * Created by ben on 26-6-2017.
- */
-public interface IGPSdEndpoint {
+public interface IGPSdEndpoint
+{
     void start();
 
     void stop();
