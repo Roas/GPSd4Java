@@ -50,7 +50,7 @@ public class TestSimulator {
 	 */
 	public static void main(final String[] args) {
 		try {
-			final GPSSimulatorEndpoint ep = new GPSSimulatorEndpoint("string", new File("gpsd4Java/flightPlans.xsd.xml"));
+			final GPSSimulatorEndpoint ep = new GPSSimulatorEndpoint("string", new File("gpsd4Java/flightPlans.xsd.xml"),  5);
 			
 			ep.addListener(new ObjectListener() {
 
