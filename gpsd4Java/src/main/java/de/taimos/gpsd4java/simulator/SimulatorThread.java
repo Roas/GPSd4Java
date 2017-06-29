@@ -79,7 +79,7 @@ public class SimulatorThread extends Thread {
 
 			endpoint.handle(tpv);
 			}
-		}, 0, 100);
+		}, 0, 1000);
 
 	/*	while (this.running.get()) {
 
