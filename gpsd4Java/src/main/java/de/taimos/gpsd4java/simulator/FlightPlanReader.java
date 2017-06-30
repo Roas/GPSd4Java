@@ -1,6 +1,5 @@
 package de.taimos.gpsd4java.simulator;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import de.taimos.gpsd4java.simulator.models.FlightPath;
 import de.taimos.gpsd4java.simulator.models.FlightPlans;
 
