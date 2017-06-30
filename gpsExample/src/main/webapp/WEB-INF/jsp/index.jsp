@@ -9,8 +9,48 @@
 		<script src="<c:url value="/assets/js/jquery-3.2.1.min.js" />"></script>
 	</head>
 	<body style="margin:0">
-		<div id="googleMap" style="width:100%;height:100%;"></div>
-		<div style="position:absolute; right:0; top:0; z-index:9999; margin-right:10px;">
+		<div style="width:100%; border:1px solid black; position: absolute; top:0; left:0; height:100px;">
+			<label>Flight code:</label>
+			<select id="flight">
+				<option selected>string</option>
+				<option>string2</option>
+			</select>
+
+			<label>Speed factor:</label>
+			<select id="speed">
+				<option>1</option>
+				<option>5</option>
+				<option selected>10</option>
+				<option>50</option>
+				<option>100</option>
+				<option>500</option>
+				<option>1000</option>
+				<option>5000</option>
+			</select>
+
+			<button onclick="changeFlight();">Go</button>
+
+			<label>Zoom level:</label>
+			<select onchange="changeZoom(this);">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option selected>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+				<option>14</option>
+				<option>15</option>
+			</select>
+		</div>
+		<div id="googleMap" style="width:100%;position:absolute; top:100px; bottom:0;"></div>
+		<div style="position:absolute; right:0; top:110px; z-index:9999; margin-right:10px;">
 			<h3 id="altitude" style="margin:0;"></h3>
 			<h3 id="time" style="margin:0;"></h3>
 		</div>
@@ -22,13 +62,43 @@
 			var PLANE_SCALE = 0.075;
 
 			var line = null;
+			var PLANE_OFFSET = '50%';
+			var ZOOM_FACTOR = 5;
+			var map;
+
+			function changeZoom(select)
+			{
+			    map.setZoom(Number(select.value));
+			}
+
+			function changeFlight()
+			{
+			    var flightCode = $("#flight").val();
+			    var speedFactor = $("#speed").val();
+
+                var request = $.ajax({
+                    url: "/gpssettings/" + flightCode + "/" + speedFactor,
+                    method: "post",
+                    dataType: 'text'
+                });
+
+                request.done(function () {
+                    TIMEZONE_COUNTER = 0;
+                    TIME_OFFSET = 0;
+
+                });
+
+                request.fail(function () {
+                    alert("Flight change failed. Please restart the server");
+                });
+			}
 
 			function initialize() {
 				var mapProp = {
 //					center: new google.maps.LatLng(51.508742, -0.120850),
-					zoom: 5
+					zoom: ZOOM_FACTOR
 				};
-				var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+				map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 				var marker = new google.maps.Marker({
 					icon: {

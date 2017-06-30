@@ -24,19 +24,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
+import java.util.List;
 
 @Controller
-@RequestMapping("/gps")
 public class GpsController
 {
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, headers = "Accept=*/*")
-    public ResponseEntity<TPVObject> read(HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
+    @RequestMapping(value = "/gps", method = RequestMethod.GET, headers = "Accept=*/*")
+    public ResponseEntity<TPVObject> getLastCoordinate(HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
     {
         TPVObject coords = GpsInitiator.lastCoordinates;
         if(coords == null)
             return new ResponseEntity(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<TPVObject>(coords, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/gpslist", method = RequestMethod.GET, headers = "Accept=*/*")
+    public ResponseEntity<List<TPVObject>> getCoordinateList(HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
+    {
+        if(GpsInitiator.coordinateLog.isEmpty())
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<List<TPVObject>>(GpsInitiator.coordinateLog, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/gpssettings/{flightcode}/{speed}", method = RequestMethod.POST, headers = "Accept=*/*")
+    public ResponseEntity<Boolean> changeSettings(@PathVariable("flightcode") String flightcode, @PathVariable("speed") int speed, HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
+    {
+        GpsInitiator.stop();
+        GpsInitiator.start(flightcode, GpsInitiator.XML_FILE_LOCATION, speed);
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 }

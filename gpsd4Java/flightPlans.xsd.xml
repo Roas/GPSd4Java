@@ -1,10 +1,10 @@
 <flightPlans>
-  <!--Zero or more repetitions:-->
   <flightPaths>
-    <!--Optional:-->
     <airplaneCode>string</airplaneCode>
+    <departureLocation>AMS</departureLocation>
+    <destinationLocation>LHR</destinationLocation>
+    <flightCode>string</flightCode>
     <coordinates>
-      <!--1 or more repetitions:-->
       <coordinate>
         <altitude>0</altitude>
         <latitude>52.3255944</latitude>
@@ -24,15 +24,36 @@
         <time>11:00</time>
       </coordinate>
     </coordinates>
-    <!--Optional:-->
-    <departureLocation>AMS</departureLocation>
-    <!--Optional:-->
-    <destinationLocation>LHR</destinationLocation>
-    <!--Optional:-->
-    <flightCode>string</flightCode>
-    <!--Optional:-->
     <flyDays>
-      <!--1 or more repetitions:-->
+      <day>FRIDAY</day>
+    </flyDays>
+  </flightPaths>
+  <flightPaths>
+    <airplaneCode>string2</airplaneCode>
+    <departureLocation>AMS</departureLocation>
+    <destinationLocation>LHR</destinationLocation>
+    <flightCode>string2</flightCode>
+    <coordinates>
+      <coordinate>
+        <altitude>500</altitude>
+        <latitude>52.3255944</latitude>
+        <longitude>0.7222644</longitude>
+        <time>13:00</time>
+      </coordinate>
+      <coordinate>
+        <altitude>5000</altitude>
+        <latitude>51.2830149</latitude>
+        <longitude>3.6849083</longitude>
+        <time>13:20</time>
+      </coordinate>
+      <coordinate>
+        <altitude>0</altitude>
+        <latitude>51.4700256</latitude>
+        <longitude>-0.4564842</longitude>
+        <time>14:00</time>
+      </coordinate>
+    </coordinates>
+    <flyDays>
       <day>FRIDAY</day>
     </flyDays>
   </flightPaths>
