@@ -15,11 +15,13 @@
 			<h3 id="time" style="margin:0;"></h3>
 		</div>
 		<script>
-			var TIME_BETWEEN_UPDATES = 2000;
+			var TIME_BETWEEN_UPDATES = 1000;
 			var PLANE_ICON = '<c:url value="/assets/images/plane-icon.svg" />';
 			var TIME_OFFSET = 0;
-			var TIMEZONE_REQUEST_INTERVAL = 10;
+			var TIMEZONE_REQUEST_INTERVAL = 20;
 			var TIMEZONE_COUNTER = 0;
+			var PLANE_SCALE = 0.075;
+			var PLANE_OFFSET = '50%';
 
 			function initialize() {
 				var mapProp = {
@@ -33,8 +35,7 @@
 					icon: {
 //						url: PLANE_ICON,
 						path: 'M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z',
-						rotation: 0,
-						scale: 0.02
+						rotation: 0
 					}
 				});
 
@@ -88,10 +89,13 @@
 
 				marker.setIcon({
 					rotation: msg.course,
+					scale: PLANE_SCALE,
+					offset: PLANE_OFFSET,
+					fillColor: 'black',
+					fillOpacity: 1,
 					path: "M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z",
+					anchor: new google.maps.Point(250,500)
 				});
-
-				console.log(msg.course);
 
 				var time = msg.timestamp + TIME_OFFSET;
 				var hours = Math.floor(time / 3600);
