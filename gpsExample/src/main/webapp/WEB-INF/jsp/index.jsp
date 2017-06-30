@@ -85,6 +85,7 @@
                 request.done(function () {
                     TIMEZONE_COUNTER = 0;
                     TIME_OFFSET = 0;
+                    resetLine();
 
                 });
 
