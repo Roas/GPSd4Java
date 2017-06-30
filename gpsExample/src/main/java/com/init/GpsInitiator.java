@@ -17,7 +17,7 @@ public class GpsInitiator {
     public GpsInitiator() {
         GPSSimulatorEndpoint ep = null;
         try {
-            ep = new GPSSimulatorEndpoint("string", new File("C:\\Users\\ben\\Git\\GPSd4Java\\gpsd4Java\\flightPlans.xsd.xml"));
+            ep = new GPSSimulatorEndpoint("string", new File("C:\\Users\\ben\\Git\\GPSd4Java\\gpsd4Java\\flightPlans.xsd.xml"), 20);
         } catch (Exception e) {
             e.printStackTrace();
         }

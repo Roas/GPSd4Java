@@ -7,21 +7,21 @@
       <!--1 or more repetitions:-->
       <coordinate>
         <altitude>0</altitude>
-        <latitude>52.3076865</latitude>
-        <longitude>4.767424099999971</longitude>
+        <latitude>52.3255944</latitude>
+        <longitude>4.7222644</longitude>
         <time>10:00</time>
       </coordinate>
       <coordinate>
-        <altitude>2000</altitude>
-        <latitude>52.408954</latitude>
-        <longitude>4.653626</longitude>
-        <time>10:01</time>
+        <altitude>5000</altitude>
+        <latitude>51.2830149</latitude>
+        <longitude>3.6849083</longitude>
+        <time>10:20</time>
       </coordinate>
       <coordinate>
-        <altitude>1000</altitude>
-        <latitude>53.408954</latitude>
-        <longitude>5.653626</longitude>
-        <time>10:02</time>
+        <altitude>0</altitude>
+        <latitude>51.4700256</latitude>
+        <longitude>-0.4564842</longitude>
+        <time>11:00</time>
       </coordinate>
     </coordinates>
     <!--Optional:-->

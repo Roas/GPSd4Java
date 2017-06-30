@@ -54,7 +54,7 @@ public class FlightPathProcessor
 
         // Calculate the coordinates between points if not set
         if(intervalCoordinatesList == null)
-            calculateCoordinatesBetweenPoints(firstCoordinate, secondCoordinate, timeDifference);
+            calculateCoordinatesBetweenPoints(firstCoordinate, secondCoordinate, timeDifference / timeAccelerationFactor);
 
         // Get the coordinates and increase the currentTime
         Point2D point = intervalCoordinatesList.get(intervalCoordinatesIndex++);
