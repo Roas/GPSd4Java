@@ -61,7 +61,7 @@
 			var TIMEZONE_COUNTER = 0;
 			var PLANE_SCALE = 0.075;
 
-			var line = null;
+			var line;
 			var PLANE_OFFSET = '50%';
 			var ZOOM_FACTOR = 5;
 			var map;
@@ -108,8 +108,8 @@
 
 				marker.setMap(map);
 
-				line = renderLine(map);
-				keepUpdatingMapIcons(map, marker);
+				renderLine();
+				keepUpdatingMapIcons(marker);
 			}
 
 			function resetLine() {
@@ -118,7 +118,7 @@
 				line.setPaths(lineCoords);
 			}
 
-			function keepUpdatingMapIcons(map, marker) {
+			function keepUpdatingMapIcons(marker) {
 				setTimeout(function () {
 					var request = $.ajax({
 						url: "/gps",
@@ -127,9 +127,9 @@
 					});
 
 					request.done(function (msg) {
-						moveMarker(map, marker, msg);
+						moveMarker(marker, msg);
 						line = refreshLine(line, msg.latitude, msg.longitude);
-						keepUpdatingMapIcons(map, marker, line);
+						keepUpdatingMapIcons(map, marker);
 
 						if (TIMEZONE_COUNTER == 0) {
 							getTimeZone(msg.latitude, msg.longitude);
@@ -147,14 +147,14 @@
 				}, TIME_BETWEEN_UPDATES);
 			}
 
-			function refreshLine(line, lat, lng) {
+			function refreshLine(lat, lng) {
 				var lineCoords = line.getPaths();
 				lineCoords.push({lat: lat, lng: lng});
 				line.setPaths(lineCoords);
 				return line;
 			}
 
-			function renderLine(map) {
+			function renderLine() {
 				var request = $.ajax({
 					url: '/gpslist',
 					method: 'get',
@@ -174,7 +174,6 @@
 					});
 					line.setMap(map);
 				});
-				return line;
 			}
 
 			function getTimeZone(x, y) {
@@ -191,7 +190,7 @@
 				});
 			}
 
-			function moveMarker(map, marker, msg) {
+			function moveMarker(marker, msg) {
 				var newCoordinate = new google.maps.LatLng(msg.latitude, msg.longitude);
 				marker.setPosition(newCoordinate);
 				marker.icon.rotation = msg.course;
