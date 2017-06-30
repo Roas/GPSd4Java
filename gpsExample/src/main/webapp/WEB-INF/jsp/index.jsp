@@ -20,7 +20,8 @@
 			var TIMEZONE_REQUEST_INTERVAL = 20;
 			var TIMEZONE_COUNTER = 0;
 			var PLANE_SCALE = 0.075;
-			var PLANE_OFFSET = '50%';
+
+			var line = null;
 
 			function initialize() {
 				var mapProp = {
@@ -36,10 +37,18 @@
 				});
 
 				marker.setMap(map);
-				keepUpdatingPlaneLocation(map, marker);
+
+				line = renderLine(map);
+				keepUpdatingMapIcons(map, marker);
 			}
 
-			function keepUpdatingPlaneLocation(map, marker) {
+			function resetLine() {
+				var lineCoords = line.getPaths();
+				lineCoords = [];
+				line.setPaths(lineCoords);
+			}
+
+			function keepUpdatingMapIcons(map, marker) {
 				setTimeout(function () {
 					var request = $.ajax({
 						url: "/gps",
@@ -49,7 +58,8 @@
 
 					request.done(function (msg) {
 						moveMarker(map, marker, msg);
-						keepUpdatingPlaneLocation(map, marker);
+						line = refreshLine(line, msg.latitude, msg.longitude);
+						keepUpdatingMapIcons(map, marker, line);
 
 						if (TIMEZONE_COUNTER == 0) {
 							getTimeZone(msg.latitude, msg.longitude);
@@ -65,6 +75,36 @@
 						alert("Map Refresh Failed. Reload the page to try again.");
 					});
 				}, TIME_BETWEEN_UPDATES);
+			}
+
+			function refreshLine(line, lat, lng) {
+				var lineCoords = line.getPaths();
+				lineCoords.push({lat: lat, lng: lng});
+				line.setPaths(lineCoords);
+				return line;
+			}
+
+			function renderLine(map) {
+				var request = $.ajax({
+					url: '/gpslist',
+					method: 'get',
+					dataType: 'json'
+				});
+
+				var lineCoords = request.done(function (msg) {
+					var lineCoords = [];
+					msg.forEach(function (location) {
+						lineCoords.push({lat: location.latitude, lng: location.longitude});
+					});
+					var line = new google.maps.Polygon({
+						paths: lineCoords,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1,
+						strokeWeight: 2
+					});
+					line.setMap(map);
+				});
+				return line;
 			}
 
 			function getTimeZone(x, y) {
@@ -89,7 +129,6 @@
 				marker.setIcon({
 					rotation: msg.course,
 					scale: PLANE_SCALE,
-					offset: PLANE_OFFSET,
 					fillColor: 'black',
 					fillOpacity: 1,
 					path: "M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z",
