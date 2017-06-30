@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class GpsInitiator {
 
-    public static final File XML_FILE_LOCATION = new File("/home/roas/Documents/Schoolprojects/GPSd4Java/gpsd4Java/flightPlans.xsd.xml");
+    public static final File XML_FILE_LOCATION = new File("C:\\Users\\ben\\Git\\GPSd4Java\\gpsd4Java\\flightPlans.xsd.xml");
     public static final int DEFAULT_SPEED_FACTOR = 10;
-    public static final String DEFAULT_FLIGHT_CODE = "string";
+    public static final String DEFAULT_FLIGHT_CODE = "flight1";
 
     public static TPVObject lastCoordinates;
     public static ArrayList<TPVObject> coordinateLog = new ArrayList<>();
