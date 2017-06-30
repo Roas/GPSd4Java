@@ -16,7 +16,6 @@
 		</div>
 		<script>
 			var TIME_BETWEEN_UPDATES = 1000;
-			var PLANE_ICON = '<c:url value="/assets/images/plane-icon.svg" />';
 			var TIME_OFFSET = 0;
 			var TIMEZONE_REQUEST_INTERVAL = 20;
 			var TIMEZONE_COUNTER = 0;
@@ -25,17 +24,14 @@
 
 			function initialize() {
 				var mapProp = {
-					center: new google.maps.LatLng(51.508742, -0.120850),
+//					center: new google.maps.LatLng(51.508742, -0.120850),
 					zoom: 5
 				};
 				var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 				var marker = new google.maps.Marker({
-//							position: new google.maps.LatLng(51.508742, -0.120850),
 					icon: {
-//						url: PLANE_ICON,
-						path: 'M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z',
-						rotation: 0
+						path: 'M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z'
 					}
 				});
 
@@ -57,6 +53,7 @@
 
 						if (TIMEZONE_COUNTER == 0) {
 							getTimeZone(msg.latitude, msg.longitude);
+							map.panTo(new google.maps.LatLng(msg.latitude, msg.longitude));
 						} else if (TIMEZONE_COUNTER >= TIMEZONE_REQUEST_INTERVAL) {
 							getTimeZone(msg.latitude, msg.longitude);
 							TIMEZONE_COUNTER = 0;
@@ -78,7 +75,9 @@
 				});
 
 				request.done(function (msg) {
-					TIME_OFFSET = msg.rawOffset;
+					if (msg.rawOffset) {
+						TIME_OFFSET = msg.rawOffset;
+					}
 				});
 			}
 
@@ -94,7 +93,7 @@
 					fillColor: 'black',
 					fillOpacity: 1,
 					path: "M497.25,357v-51l-204-127.5V38.25C293.25,17.85,275.4,0,255,0c-20.4,0-38.25,17.85-38.25,38.25V178.5L12.75,306v51    l204-63.75V433.5l-51,38.25V510L255,484.5l89.25,25.5v-38.25l-51-38.25V293.25L497.25,357z",
-					anchor: new google.maps.Point(250,500)
+					anchor: new google.maps.Point(250, 500)
 				});
 
 				var time = msg.timestamp + TIME_OFFSET;
@@ -104,7 +103,6 @@
 
 				$("#altitude").text(Math.round(msg.altitude) + " m");
 				$("#time").text(str_pad_left(hours, '0', 2) + ':' + str_pad_left(minutes, '0', 2));
-				//map.panTo(newCoordinate);
 			}
 
 			function str_pad_left(string, pad, length) {
