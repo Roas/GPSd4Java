@@ -12,8 +12,8 @@
 		<div style="width:100%; border:1px solid black; position: absolute; top:0; left:0; height:100px;">
 			<label>Flight code:</label>
 			<select id="flight">
-				<option selected>string</option>
-				<option>string2</option>
+				<option selected>flight1</option>
+				<option>flight2</option>
 			</select>
 
 			<label>Speed factor:</label>

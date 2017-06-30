@@ -3,7 +3,7 @@
     <airplaneCode>string</airplaneCode>
     <departureLocation>AMS</departureLocation>
     <destinationLocation>LHR</destinationLocation>
-    <flightCode>string</flightCode>
+    <flightCode>flight1</flightCode>
     <coordinates>
       <coordinate>
         <altitude>0</altitude>
@@ -32,7 +32,7 @@
     <airplaneCode>string2</airplaneCode>
     <departureLocation>AMS</departureLocation>
     <destinationLocation>LHR</destinationLocation>
-    <flightCode>string2</flightCode>
+    <flightCode>flight2</flightCode>
     <coordinates>
       <coordinate>
         <altitude>500</altitude>
