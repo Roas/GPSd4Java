@@ -29,6 +29,9 @@ import java.util.List;
 @Controller
 public class GpsController
 {
+    /*
+    Get the last GPS coordinate in JSON format
+     */
     @ResponseBody
     @RequestMapping(value = "/gps", method = RequestMethod.GET, headers = "Accept=*/*")
     public ResponseEntity<TPVObject> getLastCoordinate(HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
@@ -40,6 +43,9 @@ public class GpsController
         return new ResponseEntity<TPVObject>(coords, HttpStatus.OK);
     }
 
+    /*
+    Get a list with GPS coordinates (history) in JSON format
+     */
     @ResponseBody
     @RequestMapping(value = "/gpslist", method = RequestMethod.GET, headers = "Accept=*/*")
     public ResponseEntity<List<TPVObject>> getCoordinateList(HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
@@ -50,6 +56,9 @@ public class GpsController
         return new ResponseEntity<List<TPVObject>>(GpsInitiator.coordinateLog, HttpStatus.OK);
     }
 
+    /*
+    Change the gps settings flight and speed
+     */
     @ResponseBody
     @RequestMapping(value = "/gpssettings/{flightcode}/{speed}", method = RequestMethod.POST, headers = "Accept=*/*")
     public ResponseEntity<Boolean> changeSettings(@PathVariable("flightcode") String flightcode, @PathVariable("speed") int speed, HttpServletRequest request, ModelMap model) throws IllegalAccessException, NoSuchFieldException
